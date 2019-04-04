@@ -38,12 +38,23 @@ def get_my_data(BATCH_SIZE=32):
     )
 
     val_iter = torch.utils.data.DataLoader(
-        MyDataset(v_path, "val_data.npy", "val_target.npy"),
-        batch_size=BATCH_SIZE, shuffle=False, num_workers=10,
+        MyDataset(t_path, "trainning_data.npy", "trainning_target.npy"),
+        batch_size=BATCH_SIZE, shuffle=True, num_workers=10,
 
     )
 
     return train_iter, val_iter
 
+
+def get_test_data(BATCH_SIZE=32):
+    te_path = "res/test"
+    test_iter = torch.utils.data.DataLoader(
+        MyDataset(te_path, "test_data.npy", "test_target.npy"),
+        batch_size=BATCH_SIZE, shuffle=False, num_workers=10,
+    )
+
+    return test_iter
+
 if __name__ == '__main__':
     get_my_data()
+    get_test_data()

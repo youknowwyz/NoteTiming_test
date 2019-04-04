@@ -18,7 +18,8 @@ data = "c@n^o-y+u=u_00%00^00_00~00-1!2[xx$1]xx/A:2-1-1@JPN~0/B:2_1_1@JPN|0/C:1+1
 
 
 
-root_dir = "labels/mono"
+root_mono = "labels/mono"
+root_full = "labels/full"
 
 def traverse_dir(root_dir, extension = '.lab'):
     file_list = []
@@ -31,6 +32,8 @@ def traverse_dir(root_dir, extension = '.lab'):
 
     return file_list
 
+
+######按字母分割整个串
 def sub_data(data):
     data_list = []
     for char in range(65,75):
@@ -55,7 +58,7 @@ def show_sub_data(data_list):
         else:
             print("/"+chr(char + 64)+":"+data_list[char])
 
-
+#########把所有文件里的每一行按字母切成小段保存
 def read_files(file_list):
     all_lines_list = []
     for file in file_list:
@@ -72,7 +75,8 @@ def read_files(file_list):
     print((all_lines_list).shape)
     np.save("res/all_lines.npy",all_lines_list)
 
-def read_mono(root_dir):
+#####保存mono里的数据到数组
+def read_mono(file_list):
     all_mono_lines_list = []
     for file in file_list:
         with open(file, 'r') as f:
@@ -107,6 +111,7 @@ def see_max_length(dir):
 
     return max
 
+########保存原始数据的time到数组
 def read_files_time(file_list):
     all_time_list = []
     for file in file_list:
@@ -123,9 +128,10 @@ def read_files_time(file_list):
     np.save("res/all_time.npy",all_time_list)
 
 if __name__ == '__main__':
-    file_list = traverse_dir(root_dir)
-    # read_files(file_list)
-    # print(see_max_length("res/all_lines.npy"))
-    read_mono(file_list)
+    file_list = traverse_dir(root_full)
+    file_mono_list = traverse_dir(root_mono)
+    read_files_time(file_list)
+    read_files(file_list)
+    read_mono(file_mono_list)
 
 

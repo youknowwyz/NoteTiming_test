@@ -57,11 +57,22 @@ def read_mono(file_list):
 
 
 if __name__ == '__main__':
+
+    data_line = np.load("res/test/test_data.npy")
+    print(data_line)
     # file_list = traverse_dir(root_dir)
     # read_mono(file_list)
-
-    all_lines = np.load("res/note_mono_lines.npy")
-    for i in range(all_lines.shape[0]):
-        print(all_lines[i])
-
+    # pattern = r'!|#|\$|%|\||&|;|-|\]|\^|=|~|@|\+|\[|\_'
+    # all_lines = np.load("res/all_lines.npy")
+    # num = 0
+    # for i in range(all_lines.shape[0]):
+    #     str = all_lines[i][5]
+    #     p = all_lines[i][0]
+    #     result = re.split(pattern, str)
+    #     ps = re.split(pattern, p)
+    #     if result[5] != "1":
+    #         num+=1
+    #         print(i, ps[3], result[5])
     #
+    # print(num)
+    # #
