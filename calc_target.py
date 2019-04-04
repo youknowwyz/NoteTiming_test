@@ -31,10 +31,10 @@ def calc_target(time1, time2, flag):
         print(time2, time1, target)
     return target
 
-def get_targets(time_file, mono_file):
+def get_targets(time_file, mono_file, train_file):
     time_lines = np.load(time_file)
     mono_lines = np.load(mono_file)
-    all_train = np.load("res/all_train.npy")
+    all_train = np.load(train_file)
     print(time_lines.shape)
     print(mono_lines.shape)
     cleansed_train = []
@@ -91,4 +91,4 @@ def get_targets(time_file, mono_file):
 
 if __name__ == '__main__':
     #calc_one_hot(24000000 ,23800000, True)
-    get_targets("res/note_time.npy", "res/note_mono_lines.npy")
+    get_targets("res/note_time.npy", "res/note_mono_lines.npy", "res/all_train.npy")
